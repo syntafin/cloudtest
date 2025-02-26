@@ -1,49 +1,38 @@
 <script setup lang="ts">
-const posts = [
-    {
-        id: 1,
-        title: 'Boost your conversion rate',
-        href: '#',
-        description:
-            'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
-        imageUrl:
-            'https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3603&q=80',
-        date: 'Mar 16, 2020',
-        datetime: '2020-03-16',
-        author: {
-            name: 'Michael Foster',
-            imageUrl:
-                'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-        },
-    },
-    // More posts...
-]
-
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { useInitials } from '@/composables/useInitials';
+const { getInitials } = useInitials();
 defineProps({
-    posts: Object,
+    post: Object,
 });
 </script>
 
 <template>
-    <article v-for="post in posts" :key="post.id" class="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80">
-        <img :src="post.imageUrl" alt="" class="absolute inset-0 -z-10 size-full object-cover" />
+    {{ console.table(post) }}
+    <article class="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80">
+        <img :src="post.preview_image" alt="" class="absolute inset-0 -z-10 size-full object-cover" />
         <div class="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40" />
         <div class="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
 
         <div class="flex flex-wrap items-center gap-y-1 overflow-hidden text-sm/6 text-gray-300">
-            <time :datetime="post.datetime" class="mr-8">{{ post.date }}</time>
+            <time :datetime="post.created_at" class="mr-8">{{ post.created_at }}</time>
             <div class="-ml-4 flex items-center gap-x-4">
                 <svg viewBox="0 0 2 2" class="-ml-0.5 size-0.5 flex-none fill-white/50">
                     <circle cx="1" cy="1" r="1" />
                 </svg>
-                <div class="flex gap-x-2.5">
-                    <img :src="post.author.imageUrl" alt="" class="size-6 flex-none rounded-full bg-white/10" />
-                    {{ post.author.name }}
+                <div class="flex gap-x-2.5 items-center">
+                    <Avatar class="h-8 w-8 overflow-hidden rounded-lg">
+                        <AvatarImage :src="post.user.avatar" :alt="post.user.name" />
+                        <AvatarFallback class="rounded-lg text-black dark:text-white">
+                            {{ getInitials(post.user.name) }}
+                        </AvatarFallback>
+                    </Avatar>
+                    {{ post.user.name }}
                 </div>
             </div>
         </div>
         <h3 class="mt-3 text-lg/6 font-semibold text-white">
-            <a :href="post.href">
+            <a href="#">
                 <span class="absolute inset-0" />
                 {{ post.title }}
             </a>
