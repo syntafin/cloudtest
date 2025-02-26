@@ -3,6 +3,8 @@
 /public/build
 /public/hot
 /public/storage
+/public/css/filamentfilament
+/public/js/filament/filament
 /storage/*.key
 /storage/pail
 /vendor

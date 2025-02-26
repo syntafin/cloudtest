@@ -13,6 +13,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 defineProps<{
     name?: string;
+    posts: Object,
 }>();
 </script>
 
@@ -21,7 +22,8 @@ defineProps<{
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-            <PostItem />
+            {{ console.table(posts) }}
+            <PostItem v-for="post in posts" :key="post.id" :post="post" />
         </div>
     </AppLayout>
 </template>
