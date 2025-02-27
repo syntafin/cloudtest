@@ -20,10 +20,10 @@ defineProps<Props>();
     </DropdownMenuLabel>
     <DropdownMenuSeparator />
     <DropdownMenuItem :as-child="true">
-        <Link class="block w-full" :href="route('filament.admin.pages.dashboard')">
+        <a class="block w-full" :href="route('filament.admin.pages.dashboard')">
             <LucideShield class="mr-2 h-4 w-4" />
             Admin
-        </Link>
+        </a>
     </DropdownMenuItem>
     <DropdownMenuGroup>
         <DropdownMenuItem :as-child="true">
