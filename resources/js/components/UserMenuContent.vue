@@ -3,7 +3,7 @@ import UserInfo from '@/components/UserInfo.vue';
 import { DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
 import type { User } from '@/types';
 import { Link } from '@inertiajs/vue3';
-import { LogOut, Settings } from 'lucide-vue-next';
+import { LogOut, Settings, LucideShield } from 'lucide-vue-next';
 
 interface Props {
     user: User;
@@ -19,6 +19,12 @@ defineProps<Props>();
         </div>
     </DropdownMenuLabel>
     <DropdownMenuSeparator />
+    <DropdownMenuItem :as-child="true">
+        <Link class="block w-full" :href="route('filament.admin.pages.dashboard')">
+            <LucideShield class="mr-2 h-4 w-4" />
+            Admin
+        </Link>
+    </DropdownMenuItem>
     <DropdownMenuGroup>
         <DropdownMenuItem :as-child="true">
             <Link class="block w-full" :href="route('profile.edit')" as="button">
