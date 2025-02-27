@@ -33,7 +33,7 @@ defineProps({
             </div>
         </div>
         <h3 class="mt-3 text-lg/6 font-semibold text-white">
-            <Link :ref="route('posts.show', post.slug)">
+            <Link :href="route('posts.show', post.slug)">
                 <span class="absolute inset-0" />
                 {{ post.title }}
             </Link>

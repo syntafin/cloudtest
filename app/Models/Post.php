@@ -6,6 +6,7 @@ use App\HasImage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 
 class Post extends Model
@@ -14,6 +15,7 @@ class Post extends Model
     use HasFactory;
     use HasImage;
     use Searchable;
+    use SoftDeletes;
 
     protected $appends = ['preview_image'];
 
