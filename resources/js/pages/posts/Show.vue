@@ -57,5 +57,8 @@ defineProps<{
 </template>
 
 <style scoped>
-
+ul {
+    margin-left: calc(0.25rem * 8);
+    list-style-type: disc;
+}
 </style>
